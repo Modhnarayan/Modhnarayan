@@ -1,0 +1,39 @@
+import random
+
+class Jarvis:
+    def __init__(self):
+        self.greetings = ["Hello, sir. How can I assist you today?",
+                          "Good day! How may I be of service?",
+                          "Greetings! What can I do for you?"]
+        self.farewells = ["Goodbye, sir. Have a great day!",
+                          "Farewell! Until next time.",
+                          "Adios! Take care."]
+
+    def greet(self):
+        return random.choice(self.greetings)
+
+    def farewell(self):
+        return random.choice(self.farewells)
+
+    def respond_to_input(self, user_input):
+        if "hello" in user_input.lower():
+            return self.greet()
+        elif "goodbye" in user_input.lower() or "bye" in user_input.lower():
+            return self.farewell()
+        else:
+            return "I'm sorry, I didn't quite catch that. Could you please repeat or specify?"
+
+def main():
+    jarvis = Jarvis()
+    print(jarvis.greet())
+
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == "exit":
+            print(jarvis.farewell())
+            break
+        response = jarvis.respond_to_input(user_input)
+        print("Jarvis:", response)
+
+if __name__ == "__main__":
+    main()
